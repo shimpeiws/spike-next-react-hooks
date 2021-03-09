@@ -1,0 +1,5 @@
+- [x] Init Next.js
+- [ ] Fetch Data
+- [ ] Update Data
+- [ ] Unit Test
+- [ ] eslint / prettier
