@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "server": "npx ts-node --project scripts/server/tsconfig.json ./scripts/server/index.ts"
   },
   "keywords": [],
   "author": "",
@@ -17,8 +18,11 @@
     "react-dom": "^17.0.1"
   },
   "devDependencies": {
+    "@types/express": "^4.17.11",
     "@types/node": "^14.14.32",
     "@types/react": "^17.0.3",
+    "express": "^4.17.1",
+    "ts-node": "^9.1.1",
     "typescript": "^4.2.3"
   }
 }
