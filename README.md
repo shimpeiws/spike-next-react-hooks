@@ -1,6 +1,6 @@
 - [x] Init Next.js
-- [ ] Fetch Data
-- [ ] Update Data
+- [x] Fetch Data
+- [x] Update Data
 - [ ] Global State
 - [ ] Unit Test
 - [ ] eslint/prettier
