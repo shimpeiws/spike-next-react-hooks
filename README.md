@@ -3,5 +3,6 @@
 - [x] Update Data
 - [ ] Global State
 - [ ] Unit Test
+- [ ] Global State
 - [ ] eslint/prettier
 - [ ] SWR/react-query
