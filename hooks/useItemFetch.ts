@@ -24,12 +24,17 @@ export const useItemFetch = () => {
     }
   };
 
+  const fetchItems = () => {
+    const res = await fetch("http://localhost:8080");
+    const data = await res.json();
+    return data;
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       dispatch(actions.startFetchItemsAction());
       try {
-        const res = await fetch("http://localhost:8080");
-        const data = await res.json();
+        const data = await fetchItems();
         dispatch(actions.successFetchItemsAction(data.data as Item[]));
       } catch (e) {
         dispatch(actions.failFetchItemsAction(["Failed"]));
