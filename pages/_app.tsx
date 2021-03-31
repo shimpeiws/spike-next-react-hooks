@@ -1,6 +1,9 @@
 import { AppProps } from "next/app";
 import Head from "next/head";
 import { ItemContextProvider } from "../contexts/itemContext";
+import { QueryClient, QueryClientProvider } from "react-query";
+
+const queryClient = new QueryClient();
 
 const App = ({ Component, pageProps }: AppProps) => (
   <>
@@ -10,9 +13,11 @@ const App = ({ Component, pageProps }: AppProps) => (
         content="width=device-width, initial-scale=1, shrink-to-fit=no"
       />
     </Head>
-    <ItemContextProvider>
-      <Component {...pageProps} />
-    </ItemContextProvider>
+    <QueryClientProvider client={queryClient}>
+      <ItemContextProvider>
+        <Component {...pageProps} />
+      </ItemContextProvider>
+    </QueryClientProvider>
   </>
 );
 

@@ -6,6 +6,8 @@ const FAIL_FETCH_ITEMS = "FAIL_FETCH_ITEMS" as const;
 const START_POST_ITEM = "START_POST_ITEM" as const;
 const SUCCESS_POST_ITEM = "SUCCESS_POST_ITEM" as const;
 const FAIL_POST_ITEM = "FAIL_POST_ITEM" as const;
+const START_LOADING = "START_LOADING" as const;
+const FINISH_LOADING = "FINISH_LOADING" as const;
 
 const startFetchItemsAction = () => {
   return { type: START_FETCH_ITEMS };
@@ -31,6 +33,14 @@ const failPostItemAction = (errors: string[]) => {
   return { type: FAIL_POST_ITEM, payload: { errors } };
 };
 
+const startLoadingAction = () => {
+  return { type: START_LOADING };
+};
+
+const finishLoadingAction = () => {
+  return { type: FINISH_LOADING };
+};
+
 export const actions = {
   startFetchItemsAction,
   successFetchItemsAction,
@@ -38,6 +48,8 @@ export const actions = {
   startPostItemAction,
   successPostItemAction,
   failPostItemAction,
+  startLoadingAction,
+  finishLoadingAction
 };
 
 export type ActionType =
@@ -46,7 +58,9 @@ export type ActionType =
   | ReturnType<typeof failFetchItemsAction>
   | ReturnType<typeof startPostItemAction>
   | ReturnType<typeof successPostItemAction>
-  | ReturnType<typeof failPostItemAction>;
+  | ReturnType<typeof failPostItemAction>
+  | ReturnType<typeof startLoadingAction>
+  | ReturnType<typeof finishLoadingAction>;
 
 export type State = {
   loading: boolean;
@@ -57,7 +71,7 @@ export type State = {
 export const initialState: State = {
   loading: false,
   items: undefined,
-  errors: undefined,
+  errors: undefined
 };
 
 export const reducer = (state: State, action: ActionType): State => {
@@ -66,26 +80,26 @@ export const reducer = (state: State, action: ActionType): State => {
       return {
         ...state,
         loading: true,
-        errors: undefined,
+        errors: undefined
       };
     case SUCCESS_FETCH_ITEMS:
       return {
         ...state,
         loading: false,
-        items: action.payload.items,
+        items: action.payload.items
       };
     case FAIL_FETCH_ITEMS:
       return {
         ...state,
         loading: false,
         items: undefined,
-        errors: action.payload.errors,
+        errors: action.payload.errors
       };
     case START_POST_ITEM:
       return {
         ...state,
         loading: true,
-        errors: undefined,
+        errors: undefined
       };
     case SUCCESS_POST_ITEM:
       console.info(state.items);
@@ -94,13 +108,23 @@ export const reducer = (state: State, action: ActionType): State => {
         loading: false,
         items: state.items
           ? [...state.items, action.payload.item]
-          : [action.payload.item],
+          : [action.payload.item]
       };
     case FAIL_POST_ITEM:
       return {
         ...state,
         loading: false,
-        errors: action.payload.errors,
+        errors: action.payload.errors
+      };
+    case START_LOADING:
+      return {
+        ...state,
+        loading: true
+      };
+    case FINISH_LOADING:
+      return {
+        ...state,
+        loading: false
       };
     default:
       return state;
