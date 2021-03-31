@@ -20,7 +20,7 @@ const failFetchItemsAction = (errors: string[]) => {
 };
 
 const startPostItemAction = () => {
-  return { type: START_FETCH_ITEMS };
+  return { type: START_POST_ITEM };
 };
 
 const successPostItemAction = (item: Item) => {
